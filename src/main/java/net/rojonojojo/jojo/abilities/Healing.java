@@ -6,34 +6,26 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 import net.rojonojojo.jojo.util.RegisterEventHandler;
-import xyz.heroesunited.heroesunited.common.abilities.Ability;
+import xyz.heroesunited.heroesunited.common.abilities.JSONAbility;
 import xyz.heroesunited.heroesunited.common.capabilities.HUPlayer;
 
-public class Healing extends Ability {
+public class Healing extends JSONAbility {
     public Healing() { super(RegisterEventHandler.HEALING); }
 
-    @Override
-    public void toggle(PlayerEntity player, int id, boolean pressed) {
-        if (this.getJsonObject().has("key")) {
-            JsonObject key = JSONUtils.getAsJsonObject(this.getJsonObject(), "key");
-            String pressType = JSONUtils.getAsString(key, "pressType", "toggle");
+    boolean toggled = false;
 
-            if (id == JSONUtils.getAsInt(key, "id")) {
-                if (pressType.equals("toggle")) {
-                    if (pressed) {
-                        player.sendMessage(new StringTextComponent("lol gay bruh"), Util.NIL_UUID);
-                    }
-                } else if (pressType.equals("action")) {
-                    if (pressed) {
-                        player.sendMessage(new StringTextComponent("lol gay bruh"), Util.NIL_UUID);
-                    }
-                    HUPlayer.getCap(player).setSlowMoSpeed(20F);
-                } else if (pressType.equals("held")) {
-                        if (pressed){
-                            player.sendMessage(new StringTextComponent("lol gay bruh"), Util.NIL_UUID);
-                        }
-                }
-            }
+    @Override
+    public void onUpdate(PlayerEntity player) {
+        super.onUpdate(player);
+
+    }
+
+    @Override
+    public void action(PlayerEntity player) {
+        if(player.level.isClientSide) {
+            this.toggled = !this.toggled;
+            player.setHealth(player.getHealth() + 2);
         }
     }
+
 }
