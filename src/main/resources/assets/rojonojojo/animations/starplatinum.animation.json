@@ -1,0 +1,116 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.starplatinum.afk": {
+			"loop": true,
+			"animation_length": 0.8,
+			"bones": {
+				"stand": {
+					"position": {
+						"0.0": {
+							"vector": [0, -1, 0]
+						},
+						"0.36": {
+							"vector": [0, 5, 0]
+						},
+						"0.72": {
+							"vector": [0, -1, 0]
+						}
+					}
+				},
+				"extras": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 2.5, 0]
+						},
+						"0.36": {
+							"vector": [0, -17.5, 0]
+						},
+						"0.72": {
+							"vector": [0, 2.5, 0]
+						}
+					}
+				},
+				"extras2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.36": {
+							"vector": [20, 0, 0]
+						},
+						"0.72": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"extras5": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -12.5]
+						},
+						"0.36": {
+							"vector": [17.5, 0, -12.5]
+						},
+						"0.72": {
+							"vector": [0, 0, -12.5]
+						}
+					}
+				},
+				"extras3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -27.5, 0]
+						},
+						"0.36": {
+							"vector": [-40, 10, 0]
+						},
+						"0.72": {
+							"vector": [0, -27.5, 0]
+						}
+					}
+				},
+				"extras4": {
+					"rotation": {
+						"0.0": {
+							"vector": [55, 0, 0]
+						},
+						"0.36": {
+							"vector": [55, 57.5, 0]
+						},
+						"0.72": {
+							"vector": [55, 0, 0]
+						}
+					}
+				},
+				"extras6": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -72.5, 0]
+						},
+						"0.36": {
+							"vector": [-47.5, -72.5, 0]
+						},
+						"0.72": {
+							"vector": [0, -72.5, 0]
+						}
+					}
+				},
+				"extras7": {
+					"rotation": {
+						"0.0": {
+							"vector": [-32.5, 0, 0]
+						},
+						"0.36": {
+							"vector": [92.5, 0, 0]
+						},
+						"0.72": {
+							"vector": [-32.5, 0, 0]
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

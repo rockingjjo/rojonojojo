@@ -1,0 +1,61 @@
+modLoader="javafml"
+
+loaderVersion="[35,)"
+
+license="All rights reserved"
+
+issueTrackerURL="http://my.issue.tracker/"
+
+[[mods]]
+
+modId="rojonojojo"
+
+
+version="1.0.0"
+
+displayName=" RockingJJO's Jojo mod"
+
+updateJSONURL="http://myurl.me/"
+
+displayURL="http://example.com/"
+
+logoFile="logo.png"
+
+credits="Coding and models done by RockingJJO/Rocking_zakilla_jjo, and also credit to the HU team for making the HU core"
+
+authors="Rocking_zakilla_jjo/RockingJJO"
+
+description='''
+this mod adds everything possible from the 1987 manga Jojo's bizzare adventure such as stands, vampires, hamon and others.
+'''
+
+[[dependencies.rojonojojo]]
+
+    modId="forge"
+
+    mandatory=true
+
+    versionRange="[35,)"
+
+    ordering="NONE"
+
+    side="BOTH"
+
+[[dependencies.rojonojojo]]
+    modId="minecraft"
+    mandatory=true
+
+    versionRange="[1.16.4,1.17)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.rojonojojo]]
+    modId="heroesunited"
+
+   mandatory=true
+
+   versionRange="[2,)"
+
+   ordering="AFTER"
+
+   side="BOTH"

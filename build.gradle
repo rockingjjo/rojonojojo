@@ -1,0 +1,132 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url "https://plugins.gradle.org/m2/" }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.+', changing: true
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.4'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+version = '1.0'
+group = 'net.rockingjjo.rojonojojo'
+archivesBaseName = 'rojonojojo'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+minecraft {
+    mappings channel: 'official', version: "1.16.5"
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            property "mixin.env.disableRefMap", "true"
+            arg "-mixin.config=heroesunited.mixins.json"
+            mods {
+                huben10 {
+                    source sourceSets.main
+                }
+            }
+        }
+        clientWithCredentials {
+            parent runs.client
+
+            args '--username', 'rockingjjo', '--uuid', '4f457efd-9013-4a51-aadb-faa479ce6cac', "-mixin.config=heroesunited.mixins.json"
+        }
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            property "mixin.env.disableRefMap", "true"
+            arg "-mixin.config=heroesunited.mixins.json"
+            mods {
+                rojonojojo {
+                    source sourceSets.main
+                }
+            }
+        }
+        data {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            args '--mod', 'rojonojojo', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                rojonojojo {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://repo.repsy.io/mvn/heroesunited/default' }
+        maven { url 'https://repo.repsy.io/mvn/gandiber/geckolib' }
+        maven { url 'http://harleyoconnor.com/maven' }
+        maven {
+            url "https://www.cursemaven.com"
+        }
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    dependencies {
+        minecraft 'net.minecraftforge:forge:1.16.5-36.0.48'
+        compile 'xyz.heroesunited:hu-core:2.5.1:deobf'
+        implementation 'com.github.Vatuu:discord-rpc:1.6.2'
+        compile fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.13')
+    }
+
+    jar {
+        manifest {
+            attributes([
+                    "Specification-Title"     : "rojonojojo",
+                    "Specification-Vendor"    : "rojonojojosareus",
+                    "Specification-Version"   : "1",
+                    "Implementation-Title"    : project.name,
+                    "Implementation-Version"  : "${version}",
+                    "Implementation-Vendor"   : "rojonojojosareus",
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            ])
+        }
+    }
+
+    configurations {
+        shade
+        compile.extendsFrom(shade)
+    }
+
+    shadowJar {
+        configurations = [project.configurations.shade]
+        relocate 'software.bernie.geckolib', 'software.bernie.HU.geckolib'
+
+        classifier ''
+    }
+
+    reobf {
+        shadowJar {}
+    }
+
+    jar.finalizedBy('reobfJar')
+
+}
