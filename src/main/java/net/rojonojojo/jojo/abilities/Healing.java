@@ -5,12 +5,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
-import net.rojonojojo.jojo.util.ClientEventBusSubscriber;
+import net.rojonojojo.jojo.util.RegisterEventHandler;
 import xyz.heroesunited.heroesunited.common.abilities.Ability;
 import xyz.heroesunited.heroesunited.common.capabilities.HUPlayer;
 
 public class Healing extends Ability {
-    public Healing() { super(ClientEventBusSubscriber.HEALING); }
+    public Healing() { super(RegisterEventHandler.HEALING); }
 
     @Override
     public void toggle(PlayerEntity player, int id, boolean pressed) {
