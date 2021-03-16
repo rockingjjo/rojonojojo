@@ -1,0 +1,13 @@
+{
+  "abilities": {
+    "healing": {
+      "ability": "rojonojojo:healing",
+      "hidden": false,
+      "active": true,
+      "key": {
+        "id": 1,
+        "pressType": "toggle"
+      }
+    }
+  }
+}
