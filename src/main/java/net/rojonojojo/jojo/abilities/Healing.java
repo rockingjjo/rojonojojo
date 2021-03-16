@@ -25,11 +25,13 @@ public class Healing extends Ability {
                     }
                 } else if (pressType.equals("action")) {
                     if (pressed) {
-
+                        player.sendMessage(new StringTextComponent("lol gay bruh"), Util.NIL_UUID);
                     }
                     HUPlayer.getCap(player).setSlowMoSpeed(20F);
                 } else if (pressType.equals("held")) {
-
+                        if (pressed){
+                            player.sendMessage(new StringTextComponent("lol gay bruh"), Util.NIL_UUID);
+                        }
                 }
             }
         }
