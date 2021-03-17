@@ -1,10 +1,17 @@
 package net.rojonojojo.jojo;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.rojonojojo.jojo.entityrenderers.ZoomPunchRenderer;
+import net.rojonojojo.jojo.init.ModEntityTypes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,6 +28,8 @@ public class RojoNoJojo {
         bus.addListener(this::setup);
         //ItemInit.ITEMS.register(bus);
 
+        ModEntityTypes.ENTITY_TYPES.register(bus);
+
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
     }
@@ -29,7 +38,7 @@ public class RojoNoJojo {
 
     }
 
-    private void clientSetup(final FMLCommonSetupEvent event){
+    private void clientSetup(final FMLClientSetupEvent event){
 
     }
 

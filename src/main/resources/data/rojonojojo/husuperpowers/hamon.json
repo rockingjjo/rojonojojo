@@ -8,6 +8,13 @@
         "id": 1,
         "pressType": "toggle"
       }
+    },
+    "zoom punch": {
+      "ability": "rojonojojo:zoom_punch",
+      "key": {
+        "id": 2,
+        "pressType": "toggle"
+      }
     }
   }
 }
