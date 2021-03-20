@@ -2,10 +2,18 @@ package net.rojonojojo.jojo.abilities;
 
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.ICommandSource;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.item.ArrowItem;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
@@ -25,29 +33,20 @@ import java.util.UUID;
 
 public class ZoomPunch extends JSONAbility {
 
-
     public ZoomPunch() {
         super(RegisterEventHandler.ZOOM_PUNCH);
-        this.actionType = ActionType.HELD;
     }
 
     @Override
     public void action(PlayerEntity player) {
         if (this.enabled){
-            ArrowEntity arrowEntity = new ArrowEntity(player.level, player);
-            arrowEntity.shootFromRotation(player, player.getRotationVector().x, player.getRotationVector().y, 0, 30, 7);
-            arrowEntity.xRot = player.xRot;
-            arrowEntity.yRot = player.yRot;
-            arrowEntity.setOwner(player);
-            //arrowEntity.addEffect();
+            if (!player.level.isClientSide) {
+                ArrowEntity arrowEntity = new ArrowEntity(player.level, player);
+                arrowEntity.shootFromRotation(player, player.xRot, player.yRot, 0, 3, 1);
+                arrowEntity.setOwner(player);
+                player.level.addFreshEntity(arrowEntity);
+            }
             HUPlayerUtil.sendMessage(player, new StringTextComponent("u cool guy"));
-            player.level.addFreshEntity(arrowEntity);
         }
     }
-
-    @Override
-    public int getKey() {
-        return 8;
-    }
-
 }
