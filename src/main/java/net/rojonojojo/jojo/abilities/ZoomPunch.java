@@ -28,7 +28,6 @@ public class ZoomPunch extends JSONAbility {
 
     public ZoomPunch() {
         super(RegisterEventHandler.ZOOM_PUNCH);
-        this.actionType = ActionType.HELD;
     }
 
     @Override
@@ -43,6 +42,12 @@ public class ZoomPunch extends JSONAbility {
             HUPlayerUtil.sendMessage(player, new StringTextComponent("u cool guy"));
             player.level.addFreshEntity(arrowEntity);
         }
+    }
+    
+    @Override
+    public Ability setJsonObject(Entity entity, JsonObject jsonObject) {
+        this.actionType = ActionType.HELD;
+        return super.setJsonObject(entity, jsonObject);
     }
 
     @Override
