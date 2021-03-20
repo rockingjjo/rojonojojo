@@ -1,18 +1,12 @@
 package net.rojonojojo.jojo.util;
 
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.rojonojojo.jojo.RojoNoJojo;
 import net.rojonojojo.jojo.abilities.Healing;
 import net.rojonojojo.jojo.abilities.ZoomPunch;
-import net.rojonojojo.jojo.entityrenderers.ZoomPunchRenderer;
-import net.rojonojojo.jojo.init.ModEntityTypes;
 import xyz.heroesunited.heroesunited.common.abilities.AbilityType;
 
 import java.util.HashMap;
@@ -62,9 +56,6 @@ public class RegisterEventHandler {
 //        //event.player.sendMessage(new StringTextComponent("sip"), Util.NIL_UUID);
 //    }
 
-    @SubscribeEvent
-    public static void onClientSetup(FMLClientSetupEvent event){
-        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ZOOM_PUNCH_ARM.get(), ZoomPunchRenderer::new);
-    }
+
 
 }

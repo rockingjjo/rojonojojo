@@ -13,7 +13,7 @@
       "ability": "rojonojojo:zoom_punch",
       "key": {
         "id": 2,
-        "pressType": "toggle"
+        "pressType": "held"
       }
     }
   }
