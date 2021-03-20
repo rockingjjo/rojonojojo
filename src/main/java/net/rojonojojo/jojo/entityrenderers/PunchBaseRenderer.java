@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.rojonojojo.jojo.entities.PunchBaseEntity;
 import net.rojonojojo.jojo.entitymodels.PunchBaseModel;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.HU.geckolib3.model.AnimatedGeoModel;
 
 public class PunchBaseRenderer extends GeoProjectilesRenderer<PunchBaseEntity>{
     public PunchBaseRenderer(EntityRendererManager renderManager) {

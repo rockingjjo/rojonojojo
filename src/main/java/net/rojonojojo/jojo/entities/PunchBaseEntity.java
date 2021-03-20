@@ -16,34 +16,28 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.rojonojojo.jojo.init.ModEntityTypes;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.HU.geckolib3.core.IAnimatable;
+import software.bernie.HU.geckolib3.core.PlayState;
+import software.bernie.HU.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.HU.geckolib3.core.controller.AnimationController;
+import software.bernie.HU.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.HU.geckolib3.core.manager.AnimationData;
+import software.bernie.HU.geckolib3.core.manager.AnimationFactory;
 
 import java.util.List;
 
 public class PunchBaseEntity extends AbstractArrowEntity implements IAnimatable {
 
+    private AnimationFactory factory = new AnimationFactory(this);
     private int ticksInAir;
 
-    public PunchBaseEntity(EntityType<? extends AbstractArrowEntity> p_i48546_1_, World p_i48546_2_) {
-        super(p_i48546_1_, p_i48546_2_);
+    public PunchBaseEntity(EntityType<? extends AbstractArrowEntity> type, World world) {
+        super(type, world);
     }
 
     public PunchBaseEntity(World world, LivingEntity owner) {
         super(ModEntityTypes.PUNCH_BASE_ENTITY.get(), owner, world);
     }
-
-
-
-    private AnimationFactory factory = new AnimationFactory(this);
-
-
-
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
@@ -67,8 +61,7 @@ public class PunchBaseEntity extends AbstractArrowEntity implements IAnimatable 
     protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
         super.onHitEntity(p_213868_1_);
         Entity entity = this.getOwner();
-        if (p_213868_1_.getType() != RayTraceResult.Type.ENTITY
-                || !((EntityRayTraceResult) p_213868_1_).getEntity().is(entity)) {
+        if (p_213868_1_.getType() != RayTraceResult.Type.ENTITY || !p_213868_1_.getEntity().is(entity)) {
             if (!this.level.isClientSide) {
                 this.remove();
             }
@@ -78,7 +71,7 @@ public class PunchBaseEntity extends AbstractArrowEntity implements IAnimatable 
     @Override
     protected void onHitBlock(BlockRayTraceResult p_230299_1_) {
         BlockState lvt_3_1_ = this.level.getBlockState(p_230299_1_.getBlockPos());
-        final int BLOCK_UPDATE         = (1 << 1);
+        final int BLOCK_UPDATE = (1 << 1);
         World world = this.level;
         lvt_3_1_.onProjectileHit(this.level, lvt_3_1_, p_230299_1_, this);
         Block block = lvt_3_1_.getBlock();

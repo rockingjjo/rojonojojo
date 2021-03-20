@@ -12,18 +12,14 @@ import xyz.heroesunited.heroesunited.common.capabilities.HUPlayer;
 public class Healing extends JSONAbility {
     public Healing() { super(RegisterEventHandler.HEALING); }
 
-    boolean toggled = false;
-
     @Override
     public void onUpdate(PlayerEntity player) {
         super.onUpdate(player);
-
     }
 
     @Override
     public void action(PlayerEntity player) {
-        if(player.level.isClientSide) {
-            this.toggled = !this.toggled;
+        if (this.enabled) {
             player.setHealth(player.getHealth() + 2);
         }
     }
